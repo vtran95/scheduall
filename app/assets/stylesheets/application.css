@@ -13,3 +13,44 @@
  *= require_tree .
  *= require_self
  */
+
+.navbar-brand {
+    width: 58px;
+    padding: 5px;
+}
+
+.container-fluid {
+    background-color: turquoise;
+    display: flex;
+    align-items: center;
+}
+
+.login {
+    color: white;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.login a {
+    color: white;
+}
+
+.main-title {
+    font-family: 'Cookie', cursive;
+    font-size: 100px;
+    font-weight: 550;
+    text-align: center;
+}
+
+.logo {
+    width: 90px;
+    position: relative;
+    bottom: 18px;
+    right: 10px;
+}
+
+/* .header-link {
+    background-color: #4f4ca4;
+    padding: 20px;
+} */

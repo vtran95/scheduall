@@ -1,0 +1,19 @@
+// Place all the styles related to the Users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.profile-title {
+    font-family: 'Lemonada', cursive;
+    font-size: 40px;
+    font-weight: 700;   
+    // position: relative;
+    // left: 50px;
+}
+
+.profile-info {
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    position: relative;
+    left: 20px;
+    top: 20px;
+}

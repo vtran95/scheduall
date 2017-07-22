@@ -1,0 +1,10 @@
+<div class="col-md-12">
+    <h1 class="profile-title col-md-offset-4"><%= @user.name %></h1>
+
+    <div class="profile-info col-md-offset-4">
+        <p>E-mail: <%= @user.email %></p>
+        <p>Interests: <%= @user.interests %></p>
+        <%= button_to "Edit", edit_user_path(@user.id), :method => "get" %>
+    </div>
+
+</div>
