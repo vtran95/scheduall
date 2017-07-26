@@ -2,9 +2,31 @@
     <h1 class="profile-title col-md-offset-4">Edit Profile</h1>
 
     <div class="profile-info col-md-offset-4">
-        <p>E-mail: <%= @user.email %></p>
-        <p>Interests: <%= @user.interests %></p>
-        <%= button_to "Save", user_path(@user.id), :method => "put" %>
+        <%= form_for @user do |user| %>
+            <% if @user.errors.any? %>
+                <div class="error_messages">
+                <h2>Invalid information</h2>
+                <ul>
+                    <% for message in @user.errors.full_messages %>
+                    <li><%= message %></li>
+                    <% end %>
+                </ul>
+                </div>
+            <% end %>
+            <div>
+                <%= user.label :name %> <%= user.text_field :name %>
+            </div>
+            <div>
+                <%= user.label :email %>
+                <%= user.text_field :email %>
+            <div>
+                <%= user.label :interests %>
+                <%= user.text_field :interests %>
+            </div>
+            <%= user.submit "Save" %>
+
+            <!--<%= button_to "Save", user_path(@user.id), :method => "put" %> -->
+        <% end %>
     </div>
 
 </div>

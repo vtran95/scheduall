@@ -12,6 +12,7 @@
  *
  *= require_tree .
  *= require_self
+ *= require bootstrap-datetimepicker
  */
 
 .navbar-brand {
@@ -25,14 +26,14 @@
     align-items: center;
 }
 
-.login {
+.nav-links {
     color: white;
     width: 100%;
     display: flex;
     justify-content: flex-end;
 }
 
-.login a {
+.nav-links a {
     color: white;
 }
 
