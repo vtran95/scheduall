@@ -7,6 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 Event.destroy_all
+Attendee.destroy_all
 
 @events = Event.create([
     {title: "Archery Tag", description: "If you can dodge a dodgeball, you can dodge a high-velocity arrow", start_date: DateTime.new(2017,8,5,20,00,00), end_date: DateTime.new(2017,8,5,21,30,00), user:User.first},
