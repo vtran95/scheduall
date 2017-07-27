@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Scheduall</title>
+    <title>ScheduAll</title>
     <%= csrf_meta_tags %>
 
     <%= favicon_link_tag 'scheduall_logo.png' %>
 
-    <link href="https://fonts.googleapis.com/css?family=Cookie|Lemonada|Roboto" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Cookie|Damion|Roboto" rel="stylesheet">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <script src="https://use.fontawesome.com/7a20da659b.js"></script>
 
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -35,7 +37,9 @@
           <% if current_user %>
             <%= link_to "Create Event", new_event_path %>
             &nbsp;&nbsp;|&nbsp;&nbsp;
-            <%= link_to "My Events", events_path %>
+            <%= link_to "Hosting Events", events_path %>
+            &nbsp;&nbsp;|&nbsp;&nbsp;
+            <%= link_to "Invitations", events_invited_path %>
             &nbsp;&nbsp;|&nbsp;&nbsp;
             <%= link_to current_user.name, user_path(current_user.id) %>
             &nbsp;&nbsp;|&nbsp;&nbsp;

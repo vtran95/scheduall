@@ -16,12 +16,28 @@ class EventsController < ApplicationController
 
     def new
         @event = Event.new
+        @users = User.where.not(id: current_user.id)
     end
 
     def create
         @event = Event.new(event_params)
         @event.user = current_user
-        @event.start_date = fix_date
+        @event.start_date = fix_date(:start_date)
+
+        if params[:event][:end_date]
+            @event.end_date = fix_date(:end_date)
+        end
+        
+        @guest_index = []
+        params.each do |key, val|
+            if val == "true"
+                @guest_index << key.to_i
+            end
+        end
+       
+        @guest_index.each do |ind|
+            @event.attending_users << User.find(ind)
+        end
 
         if @event.save
             redirect_to event_path(@event)
@@ -32,18 +48,36 @@ class EventsController < ApplicationController
 
     def edit
         @event = Event.find(params[:id])
+        @users = User.where.not(id: current_user.id)
     end
 
     def update
         @event = Event.find(params[:id])
 
         @event.update_attributes(event_params)
-        @event.start_date = fix_date
+        @event.start_date = fix_date(:start_date)
+
+        if params[:event][:end_date]
+            @event.end_date = fix_date(:end_date)
+        end
+
+        @guest_index = []
+        params.each do |key, val|
+            if val == "true"
+                @guest_index << key.to_i
+            end
+        end
+
+        @event.attendees.destroy_all
+
+        @guest_index.each do |ind|
+            @event.attending_users << User.find(ind)
+        end
 
         if @event.save
             redirect_to event_path(@event)
         else
-            render :edit
+            redirect_to edit_event_path
         end
     end
 
@@ -53,14 +87,18 @@ class EventsController < ApplicationController
         redirect_to events_path
     end
 
+    def invited
+        @events_inv = current_user.attending_events.all
+    end
+
 private
 
     def event_params
         params.require(:event).permit(:title, :description, :start_date, :end_date)
     end
 
-    def fix_date
-        datestring = params[:event][:start_date]
+    def fix_date(date)
+        datestring = params[:event][date]
         unless datestring == ""
             month = datestring[0..1].to_i
             day = datestring[3..4].to_i
@@ -75,7 +113,9 @@ private
                 minute = datestring[13..14].to_i
                 ampm = datestring[16..17]
             end
-            if ampm.downcase == "pm"
+            if hour == 12 && ampm.downcase == "pm"
+            
+            elsif ampm.downcase == "pm"
                 hour += 12;
             elsif ampm.downcase == "am" && hour == 12
                 hour -= 12

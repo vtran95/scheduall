@@ -4,7 +4,10 @@ Rails.application.routes.draw do
 
   resources :users
 
+  get '/events/invited', to: 'events#invited'
   resources :events
+
+  resources :comments
 
   resources :sessions, only: [:new, :create, :destroy]
 

@@ -18,3 +18,18 @@
     border-radius: 15px;
     padding: 10px;
 }
+
+.guest-list {
+    clear: both;
+    position: relative;
+    top: 20px;
+    left: 10px;
+}
+
+.guest-list input {
+    display: inline-block;
+}
+
+.guest {
+    display: block;
+}

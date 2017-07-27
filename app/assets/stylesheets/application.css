@@ -26,7 +26,7 @@
 }
 
 .container-fluid {
-    background-color: turquoise;
+     background-color: darkcyan; 
     display: flex;
     align-items: center;
 }
@@ -43,7 +43,7 @@
 }
 
 .main-title {
-    font-family: 'Cookie', cursive;
+    font-family: 'Damion', cursive;
     font-size: 100px;
     font-weight: 550;
     text-align: center;
@@ -56,9 +56,18 @@
     right: 10px;
 }
 
+.headings {
+    text-align: center;
+    margin-top: 80px;
+}
 
+.sub-head {
+     display: inline-block;
+     font-family: 'Damion', cursive;
+     margin: 10px 100px;
+     font-size: 60px;
+ }
 
-/* .header-link {
-    background-color: #4f4ca4;
-    padding: 20px;
-} */
+ .fa {
+     margin: 0 132px;
+ }
