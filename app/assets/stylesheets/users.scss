@@ -10,10 +10,23 @@
     // left: 50px;
 }
 
+.profile {
+    display: flex;
+    align-items: center;
+    margin-top: 50px;
+}
+
 .profile-info {
     font-family: 'Roboto', sans-serif;
     font-size: 20px;
     position: relative;
-    left: 20px;
-    top: 20px;
+    left: 40px;
+    display: inline-block;
+}
+
+.profile-pic {
+    display: inline-block;
+    width: 200px;
+    height: 200px;
+    position: relative;
 }

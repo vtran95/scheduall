@@ -1,81 +1,82 @@
-<h1 class="col-md-offset-3">Edit Event</h1>
-
 <div class="col-md-offset-3">
-    <%= form_for @event do |f| %>
-        <% if @event.errors.any? %>
-        <div class="error_messages">
-            <h4 style="color:red">Incomplete information provided</h4>
-            <ul>
-            <% for message in @event.errors.full_messages %>
-                <li><%= message %></li>
+    <h1>Edit Event</h1>
+
+    <div>
+        <%= form_for @event do |f| %>
+            <% if @event.errors.any? %>
+            <div class="error_messages">
+                <h4 style="color:red">Incomplete information provided</h4>
+                <ul>
+                <% for message in @event.errors.full_messages %>
+                    <li><%= message %></li>
+                <% end %>
+                </ul>
+            </div>
             <% end %>
-            </ul>
-        </div>
+
+            <div class="field col-xs-4">
+                <%= f.text_field :title, class:"form-control", placeholder:"Event Name" %>
+            </div>
+            <br></br>
+            <div class="container">
+                <div class="row">
+                    <div class='col-sm-6'>
+                        <div class="form-group">
+                            <div class='input-group date' id='datetimepicker1'>
+                                <%= f.text_field :start_date, class: "form-control", placeholder: @event.start_date %>
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <script type="text/javascript">
+                        $(function () {
+                            $('#datetimepicker1').datetimepicker();
+                        });
+                    </script>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="row">
+                    <div class='col-sm-6'>
+                        <div class="form-group">
+                            <div class='input-group date' id='datetimepicker2'>
+                                <%= f.text_field :end_date, class:"form-control", placeholder: @event.end_date %>
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <script type="text/javascript">
+                        $(function () {
+                            $('#datetimepicker2').datetimepicker();
+                        });
+                    </script>
+                </div>
+            </div>
+
+            <div class ="field col-md-8">
+                <%= f.text_area :description,class:"form-control",placeholder:"Description of your event"%>
+            </div>
+            <div class="guest-list">
+                <h3>Invite friends</h3>
+                <% @users.each do |user| %>
+                    <div class="guest">
+                        <% if @event.attending_users.find_by(id: user.id) %>
+                            <%= check_box_tag(user.id, true, true, class: "checkbox") %>
+                        <% else %>
+                            <%= check_box_tag(user.id, true, false, class: "checkbox") %>
+                        <% end %>
+                        <%= label_tag :checkbox, user.name %>
+                    </div>
+                <% end %>
+            </div>
+            <br></br>
+            <div class="actions submit-button"><%= f.submit "Edit", class:"btn btn-primary" %></div>
+            
         <% end %>
-
-        <div class="field col-xs-4">
-            <%= f.text_field :title, class:"form-control", placeholder:"Event Name" %>
-        </div>
-        <br></br>
-        <div class="container">
-            <div class="row">
-                <div class='col-sm-6'>
-                    <div class="form-group">
-                        <div class='input-group date' id='datetimepicker1'>
-                            <%= f.text_field :start_date, class: "form-control", placeholder: @event.start_date %>
-                            <span class="input-group-addon">
-                                <span class="glyphicon glyphicon-calendar"></span>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <script type="text/javascript">
-                    $(function () {
-                        $('#datetimepicker1').datetimepicker();
-                    });
-                </script>
-            </div>
-        </div>
-
-        <div class="container">
-            <div class="row">
-                <div class='col-sm-6'>
-                    <div class="form-group">
-                        <div class='input-group date' id='datetimepicker2'>
-                            <%= f.text_field :end_date, class:"form-control", placeholder: @event.end_date %>
-                            <span class="input-group-addon">
-                                <span class="glyphicon glyphicon-calendar"></span>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <script type="text/javascript">
-                    $(function () {
-                        $('#datetimepicker2').datetimepicker();
-                    });
-                </script>
-            </div>
-        </div>
-
-        <div class ="field col-md-8">
-            <%= f.text_area :description,class:"form-control",placeholder:"Description of your event"%>
-        </div>
-        <div class="guest-list">
-            <h3>Invite friends</h3>
-            <% @users.each do |user| %>
-                <div class="guest">
-                    <% if @event.attending_users.find_by(id: user.id) %>
-                        <%= check_box_tag(user.id, true, true, class: "checkbox") %>
-                    <% else %>
-                        <%= check_box_tag(user.id, true, false, class: "checkbox") %>
-                    <% end %>
-                    <%= label_tag :checkbox, user.name %>
-                </div>
-            <% end %>
-        </div>
-        <br></br>
-        <br></br>
-        <div class="actions"><%= f.submit %></div>
-        
-    <% end %>
+    </div>
 </div>

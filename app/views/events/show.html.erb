@@ -26,9 +26,9 @@
     <% else %>
 
         <div>
-            <%= link_to "Going!", status_attendee_path(@event.attendees.find_by(user_id: current_user.id), :going => true), method: :put, class:"btn-sm btn-success" %>
+            <%= link_to "Going!", status_attendee_path(@event.attendees.find_by(user_id: current_user.id), :going => true), method: :put, class:"btn btn-success" %>
 
-            <%= link_to "Not Going", status_attendee_path(@event.attendees.find_by(user_id: current_user.id), :going => false), method: :put, class:"btn-sm btn-danger" %>
+            <%= link_to "Not Going", status_attendee_path(@event.attendees.find_by(user_id: current_user.id), :going => false), method: :put, class:"btn btn-danger" %>
             
         </div>
 
@@ -42,7 +42,7 @@
     <%= form_for @comment do |f| %>
         <%= f.text_field :content, class: "form-control", placeholder: "Write your comment here.." %>
         <%= f.hidden_field :event_id %> 
-        <div class="actions"><%= f.submit %></div>
+        <div class="actions comment-btn"><%= f.submit "Comment", class:"btn-sm btn-primary" %></div>
     <% end %>
 </div>
 
