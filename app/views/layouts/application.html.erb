@@ -41,7 +41,7 @@
             &nbsp;&nbsp;|&nbsp;&nbsp;
             <%= link_to "Invitations", events_invited_path %>
             &nbsp;&nbsp;|&nbsp;&nbsp;
-            <%= link_to current_user.name, user_path(current_user.id) %>
+            <%= link_to current_user.name, profile_path %>
             &nbsp;&nbsp;|&nbsp;&nbsp;
             <%= link_to 'Log Out', session_path('dummy'), method: :delete, class: "header_link"%>
           <% else %>

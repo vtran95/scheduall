@@ -17,6 +17,7 @@
     background-color: lightgray;
     border-radius: 15px;
     padding: 10px;
+    margin: 10px auto;
 }
 
 .guest-list {
@@ -32,4 +33,24 @@
 
 .guest {
     display: block;
+}
+
+.comment-name, .comment-time {
+    display: inline-block;
+}
+
+.comment-time {
+    font-size: 13px;
+    color: gray;
+    margin: 0 0 0 10px;
+    position: relative;
+    bottom: 1px;
+}
+
+.listed-guests {
+    display: inline-block;
+}
+
+.fa {
+    margin: 0;
 }

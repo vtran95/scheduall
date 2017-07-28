@@ -1,17 +1,22 @@
 class EventsController < ApplicationController
 
     def index
-        events = Event.all
-        @users_events = []
-        events.each do |event|
-            if event.user == current_user
-                @users_events << event
-            end
-        end
+        # events = Event.all
+        # @users_events = []
+        # events.each do |event|
+        #     if event.user == current_user
+        #         @users_events << event
+        #     end
+        # end
+        @users_events = current_user.events.order('events.start_date ASC')
+        # @users_events.order('events.start_date DESC')
     end
 
     def show
         @event = Event.find(params[:id])
+        @users = User.all
+        @comments = @event.comments.order('comments.created_at DESC')
+        @comment = Comment.new(event_id: @event.id)
     end
 
     def new
@@ -88,7 +93,7 @@ class EventsController < ApplicationController
     end
 
     def invited
-        @events_inv = current_user.attending_events.all
+        @events_inv = current_user.attending_events.order('events.start_date ASC')
     end
 
 private
