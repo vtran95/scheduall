@@ -1,15 +1,7 @@
 class EventsController < ApplicationController
 
     def index
-        # events = Event.all
-        # @users_events = []
-        # events.each do |event|
-        #     if event.user == current_user
-        #         @users_events << event
-        #     end
-        # end
         @users_events = current_user.events.order('events.start_date ASC')
-        # @users_events.order('events.start_date DESC')
     end
 
     def show
@@ -29,26 +21,39 @@ class EventsController < ApplicationController
         @event.user = current_user
         @event.start_date = fix_date(:start_date)
 
-        if params[:event][:end_date]
-            @event.end_date = fix_date(:end_date)
-        end
-        
         @guest_index = []
         params.each do |key, val|
             if val == "true"
                 @guest_index << key.to_i
             end
         end
-       
+    
         @guest_index.each do |ind|
             @event.attending_users << User.find(ind)
         end
 
-        if @event.save
-            redirect_to event_path(@event)
+        if params[:event][:end_date] && params[:event][:end_date] != ''
+            @event.end_date = fix_date(:end_date)
+            unless @event.end_date < @event.start_date
+                if @event.save
+                    redirect_to event_path(@event)
+                else
+                    flash[:alert] = "Event could not be created, check that event title and start date has been filled"
+                    redirect_to new_event_path
+                end
+            else
+                flash[:alert] = "End date/time must be after start date/time"
+                redirect_to new_event_path
+            end
         else
-            render :new
+            if @event.save
+                redirect_to event_path(@event)
+            else
+                flash[:alert] = "Event could not be created, check that event title and start date has been filled"
+                redirect_to new_event_path
+            end
         end
+
     end
 
     def edit
